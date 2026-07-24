@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YETI - Earn Daily & Pay School Fees</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI', Arial,sans-serif}
+  body{background:#f4f8ff;color:#333}
+  .container{max-width:500px;margin:auto;background:#fff;min-height:100vh;padding-bottom:70px}
+  .header{background:linear-gradient(135deg,#0056d6,#0041a3);color:#fff;padding:20px;text-align:center}
+  .header h1{font-size:26px;font-weight:bold}
+  .header p{font-size:12px;margin-top:5px;opacity:0.9}
+  .btn{background:linear-gradient(135deg,#0056d6,#0041a3);color:#fff;padding:14px 20px;border:none;border-radius:10px;cursor:pointer;width:100%;margin:10px 0;font-weight:bold;font-size:16px}
+  .btn:hover{opacity:0.9}
+  .card{background:#fff;padding:18px;margin:15px;border-radius:14px;box-shadow:0 3px 10px rgba(0,86,214,0.1)}
+  .task-bar{background:#e6f0ff;padding:12px;border-radius:10px;margin:12px 0;text-align:center;font-weight:bold;color:#0056d6}
+  .nav{position:fixed;bottom:0;width:100%;max-width:500px;display:flex;background:#fff;border-top:2px solid #e6f0ff}
+  .nav button{flex:1;padding:14px;border:none;background:none;color:#0056d6;font-weight:bold;font-size:14px}
+  input,select{width:100%;padding:12px;margin:8px 0;border:1px solid #cce0ff;border-radius:8px;font-size:14px}
+  .hidden{display:none}
+  .ad-box{display:flex;justify-content:center;margin:10px 0}
+  .footer-note{text-align:center;font-size:11px;color:#666;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- LOGIN PAGE -->
+  <div id="loginPage">
+    <div class="header"><h1>YETI</h1><p>Earn Daily & Pay School Fees</p></div>
+    <div class="card">
+      <h3 style="color:#0056d6;margin-bottom:10px">Login to YETI</h3>
+      <input type="email" id="email" placeholder="Email Address">
+      <input type="password" id="password" placeholder="Password">
+      <input type="text" id="invite" placeholder="Invitation Code">
+      <button class="btn" onclick="login()">Login</button>
+      <p class="footer-note">*Complete daily tasks to earn and support your goals*</p>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard" class="hidden">
+    <div class="header"><h1>YETI Dashboard</h1></div>
+    <div class="card">
+      <h3 style="color:#0056d6">Daily Tasks</h3>
+      <div class="task-bar">Progress: <span id="taskCount">0</span>/20</div>
+      <button class="btn" onclick="startTask()">▶ Start Daily Task</button>
+      <p style="font-size:12px;color:#555">*You earn 20% of ad revenue. Complete tasks to earn more*</p>
+    </div>
+
+    <!-- YOUR ADSTERRA AD HERE -->
+    <div class="card">
+      <h4 style="text-align:center;color:#0056d6;margin-bottom:10px">Sponsored</h4>
+      <div class="ad-box">
+        <script>
+          atOptions = {
+            'key' : '17b5d2ec0ba03d30196c5025f02c121e',
+            'format' : 'iframe',
+            'height' : 250,
+            'width' : 300,
+            'params' : {}
+          };
+        </script>
+        <script src="https://www.highperformanceformat.com/17b5d2ec0ba03d30196c5025f02c121e/invoke.js"></script>
+      </div>
+    </div>
+  </div>
+
+  <!-- WITHDRAWAL PAGE -->
+  <div id="withdrawPage" class="hidden">
+    <div class="header"><h1>Withdrawal</h1></div>
+    <div class="card">
+      <h3 style="color:#0056d6">Bind Bank Card</h3>
+      <select id="bank">
+        <option>Select Bank</option>
+        <option>GTBank</option>
+        <option>Access Bank</option>
+        <option>First Bank</option>
+        <option>UBA</option>
+        <option>Opay</option>
+        <option>PalmPay</option>
+      </select>
+      <input type="text" placeholder="Account Number">
+      <input type="text" placeholder="Account Name">
+      <input type="password" placeholder="Set Funding Password">
+      
+      <h3 style="color:#0056d6;margin-top:15px">Withdraw Funds</h3>
+      <input type="number" placeholder="Amount (Min ₦2,000)">
+      <input type="password" placeholder="Funding Password">
+      <button class="btn" onclick="withdraw()">Withdraw Now</button>
+      <p style="font-size:12px;color:green;text-align:center">*Withdrawal is automatic*</p>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="nav">
+    <button onclick="showPage('dashboard')">🏠 Home</button>
+    <button onclick="showPage('withdrawPage')">💰 Withdrawal</button>
+  </div>
+</div>
+
+<script>
+let tasks = 0;
+function login(){
+  if(document.getElementById('email').value && document.getElementById('password').value){
+    document.getElementById('loginPage').classList.add('hidden');
+    document.getElementById('dashboard').classList.remove('hidden');
+  } else {
+    alert('Please fill all fields');
+  }
+}
+function showPage(id){
+  document.getElementById('dashboard').classList.add('hidden');
+  document.getElementById('withdrawPage').classList.add('hidden');
+  document.getElementById(id).classList.remove('hidden');
+}
+function startTask(){
+  if(tasks < 20){
+    tasks++;
+    document.getElementById('taskCount').innerText = tasks;
+    alert('Task completed! Ad loaded. You earned your 20%');
+  } else {
+    alert('Daily tasks completed! Come back tomorrow.');
+  }
+}
+function withdraw(){
+  alert('Withdrawal request submitted. It will be processed automatically.');
+}
+</script>
+</body>
+</html>
