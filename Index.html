@@ -1,0 +1,701 @@
+Here's the corrected HTML document with your real Adsterra code. Everything else remains the same — the green and white Bistro design, login saving to your browser, and exactly 20 clickable ad buttons that earn $0.20 each.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.5">
+  <title>Bistro • Watch & Earn</title>
+  <!-- ✅ Real Adsterra code updated -->
+  <script src="https://pl30580399.effectivecpmnetwork.com/04/c9/39/04c939fad0f436da8fd426ce36a72ccb.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, sans-serif;
+      background: linear-gradient(145deg, #f4fef5 0%, #e9f7e6 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      margin: 0;
+      position: relative;
+    }
+
+    .bistro-card {
+      max-width: 650px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 3rem 1.5rem 3rem 1.5rem;
+      box-shadow: 0 25px 45px rgba(34, 94, 44, 0.25), 0 8px 20px rgba(0, 40, 0, 0.1);
+      padding: 2.2rem 2rem;
+      border: 1px solid rgba(60, 130, 60, 0.3);
+      background: #ffffff;
+      backdrop-filter: blur(2px);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bistro-card::before {
+      content: "";
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 130px;
+      height: 130px;
+      background: radial-gradient(circle, #b8e0b0 5%, #9acf8e 80%);
+      opacity: 0.25;
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .bistro-card::after {
+      content: "";
+      position: absolute;
+      bottom: -40px;
+      left: -20px;
+      width: 150px;
+      height: 150px;
+      background: #c8e6b5;
+      opacity: 0.2;
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #1e4a2b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.3rem;
+      text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    h1 span {
+      background: #22662c;
+      color: white;
+      font-size: 1.8rem;
+      padding: 0.2rem 0.9rem;
+      border-radius: 60px;
+      background: #2e7d32;
+      box-shadow: 0 6px 12px rgba(30, 100, 30, 0.4);
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #2d5a27;
+      font-weight: 500;
+      font-size: 1.1rem;
+      margin-bottom: 1.8rem;
+      border-bottom: 2px dashed #9ccc7c;
+      padding-bottom: 0.7rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+    }
+
+    .login-area {
+      background: #f0f9ee;
+      border-radius: 2.5rem;
+      padding: 1.5rem 1.2rem;
+      margin-bottom: 1.8rem;
+      border: 1px solid #bcddaf;
+      box-shadow: inset 0 2px 8px rgba(0,80,20,0.05);
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .input-field {
+      display: flex;
+      align-items: center;
+      background: white;
+      border-radius: 3rem;
+      padding: 0.2rem 0.2rem 0.2rem 1.5rem;
+      border: 1px solid #b6d7a8;
+      transition: all 0.2s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .input-field:focus-within {
+      border-color: #2e7d32;
+      box-shadow: 0 0 0 3px rgba(46,125,50,0.2);
+    }
+
+    .input-field i {
+      color: #3b6e3b;
+      margin-right: 0.6rem;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+
+    .input-field input {
+      width: 100%;
+      border: none;
+      padding: 0.9rem 0.4rem;
+      font-size: 1rem;
+      background: transparent;
+      outline: none;
+      color: #1f3b1a;
+      font-weight: 500;
+    }
+
+    .input-field input::placeholder {
+      color: #8aa87d;
+      font-weight: 400;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: white;
+      border: 2px solid #2e7d32;
+      color: #1f4f1a;
+      font-weight: 700;
+      padding: 0.8rem 1.8rem;
+      border-radius: 3rem;
+      font-size: 1rem;
+      cursor: pointer;
+      background: #f9fff8;
+      transition: all 0.25s;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      letter-spacing: 0.4px;
+      box-shadow: 0 6px 0 #c0ddb0;
+      border: 2px solid #378b3a;
+    }
+
+    .btn:hover {
+      background: #e2f5da;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 0 #a7c99a, 0 6px 12px rgba(30,100,30,0.25);
+      border-color: #1b4f1b;
+    }
+
+    .btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 3px 0 #8bb378;
+    }
+
+    .btn.primary {
+      background: #2e7d32;
+      color: white;
+      border: 2px solid #1b4f1b;
+      box-shadow: 0 6px 0 #1b4a1b;
+    }
+
+    .btn.primary:hover {
+      background: #256b29;
+    }
+
+    .greeting {
+      background: #d9f0d0;
+      border-radius: 2rem;
+      padding: 0.7rem 1.2rem;
+      margin: 1rem 0 1.2rem;
+      font-weight: 600;
+      color: #1d4720;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      border-left: 6px solid #2e7d32;
+    }
+
+    .ad-panel {
+      background: #ffffff;
+      border-radius: 2rem;
+      padding: 1.4rem;
+      margin: 1.5rem 0 1rem;
+      border: 1px solid #cfe2cf;
+      box-shadow: 0 10px 20px rgba(60, 120, 50, 0.15);
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      color: #1d4920;
+      margin-bottom: 1.2rem;
+      background: #eaf7e2;
+      padding: 0.7rem 1.3rem;
+      border-radius: 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    .ad-buttons-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      justify-content: center;
+      margin: 1.2rem 0 0.8rem;
+    }
+
+    .ad-btn {
+      background: #ffffff;
+      border: 2px solid #3f8b3f;
+      color: #1e4a1e;
+      font-weight: 700;
+      padding: 0.7rem 1.2rem;
+      border-radius: 2.2rem;
+      background: #f6fff0;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 3px 0 #b1cf9e;
+      min-width: 70px;
+      font-size: 0.9rem;
+    }
+
+    .ad-btn.used {
+      background: #d4e8cc;
+      border-color: #6b8c5c;
+      color: #3b5432;
+      box-shadow: 0 2px 0 #a3b899;
+      opacity: 0.8;
+      text-decoration: line-through 2px rgba(0,0,0,0.2);
+      cursor: default;
+    }
+
+    .ad-btn:not(.used):hover {
+      background: #daf1ca;
+      border-color: #1d591d;
+      transform: scale(1.03);
+    }
+
+    .balance-box {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #1d4d14;
+      background: white;
+      padding: 0.2rem 1.3rem;
+      border-radius: 3rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      box-shadow: 0 4px 10px rgba(70,130,50,0.3);
+    }
+
+    .ad-container {
+      background: #f2f9ee;
+      border-radius: 1.2rem;
+      padding: 1rem;
+      margin: 0.8rem 0 0.5rem;
+      text-align: center;
+      border: 1px dashed #80b280;
+      min-height: 70px;
+    }
+
+    .reset-area {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 0.5rem;
+    }
+
+    .small-btn {
+      background: none;
+      border: 1px solid #a1bf9a;
+      color: #3f613a;
+      padding: 0.4rem 1.2rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .small-btn:hover {
+      background: #f0f7ea;
+      border-color: #3c6b3c;
+    }
+
+    hr {
+      border: 0.5px solid #c8e0bf;
+      margin: 1.2rem 0 0.5rem;
+    }
+
+    @media (max-width: 450px) {
+      .bistro-card {
+        padding: 1.5rem 1.2rem;
+      }
+      .ad-btn {
+        min-width: 60px;
+        padding: 0.6rem 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bistro-card">
+    <div class="content">
+      <h1>
+        🍃 BISTRO
+        <span>🌿</span>
+      </h1>
+      <div class="subtitle">
+        <span>📺 Watch ads · earn $0.20 each</span>
+      </div>
+
+      <!-- Login Section -->
+      <div class="login-area" id="loginSection">
+        <div class="input-group">
+          <div class="input-field">
+            <i>👤</i>
+            <input type="text" id="usernameInput" placeholder="Your username" autocomplete="off">
+          </div>
+        </div>
+        <div class="action-buttons">
+          <button class="btn primary" id="loginBtn">🔐 Login & Save</button>
+          <button class="btn" id="clearLoginBtn">🗑️ Clear saved</button>
+        </div>
+        <div style="font-size:0.8rem; margin-top:0.5rem; color:#4a6741; text-align:center;">
+          ✅ Login stored in your browser
+        </div>
+      </div>
+
+      <!-- User & earnings display (hidden until login) -->
+      <div id="dashboardArea" style="display: none;">
+        <div class="greeting" id="greetingMessage">
+          <span>👋 Welcome, <strong id="displayUsername"></strong></span>
+          <span class="balance-box" id="balanceDisplay">$0.00</span>
+        </div>
+
+        <!-- Ad watching panel -->
+        <div class="ad-panel">
+          <div class="stats">
+            <span>📢 Today's ads</span>
+            <span><span id="adsViewed">0</span> / <strong>20</strong> watched</span>
+          </div>
+
+          <!-- Dynamic ad buttons (20 clickable ads) -->
+          <div class="ad-buttons-grid" id="adButtonsContainer"></div>
+
+          <!-- Where ad content could appear (placeholder for click interaction) -->
+          <div class="ad-container" id="adDisplayBox">
+            <span style="color:#406839;">🟢 Click any ad number to view & earn</span>
+          </div>
+
+          <div class="reset-area">
+            <button class="small-btn" id="resetDailyBtn">🔄 Reset today's ads</button>
+          </div>
+        </div>
+
+        <div style="margin-top:0.8rem; font-size:0.9rem; color:#3b5c2a; text-align:center;">
+          💵 Each ad pays <strong>$0.20</strong> · daily limit 20 ads
+        </div>
+      </div>
+      
+      <!-- Adsterra script already embedded; additional note -->
+      <div style="font-size:0.7rem; margin-top:0.8rem; color:#5c784a; text-align:center; opacity:0.9;">
+        🍽️ bistro · fresh earnings
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // ---------- STORAGE KEYS ----------
+      const STORAGE_USERNAME = 'bistro_username';
+      const STORAGE_ADS_VIEWED = 'bistro_ads_viewed';
+      const STORAGE_BALANCE = 'bistro_balance';
+      const STORAGE_LAST_DATE = 'bistro_last_date';
+
+      // App state
+      let currentUsername = '';
+      let adsViewedCount = 0;
+      let userBalance = 0.0;
+      const MAX_ADS_PER_DAY = 20;
+      const EARN_PER_AD = 0.20;
+
+      // DOM elements
+      const loginSection = document.getElementById('loginSection');
+      const dashboardArea = document.getElementById('dashboardArea');
+      const usernameInput = document.getElementById('usernameInput');
+      const loginBtn = document.getElementById('loginBtn');
+      const clearLoginBtn = document.getElementById('clearLoginBtn');
+      const displayUsername = document.getElementById('displayUsername');
+      const balanceDisplay = document.getElementById('balanceDisplay');
+      const adsViewedSpan = document.getElementById('adsViewed');
+      const adButtonsContainer = document.getElementById('adButtonsContainer');
+      const adDisplayBox = document.getElementById('adDisplayBox');
+      const resetDailyBtn = document.getElementById('resetDailyBtn');
+      const greetingMessage = document.getElementById('greetingMessage');
+
+      // Helper: get today date string YYYY-MM-DD
+      function getTodayString() {
+        const d = new Date();
+        return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+      }
+
+      // Check if daily reset needed (new day)
+      function checkDailyReset() {
+        const lastDate = localStorage.getItem(STORAGE_LAST_DATE);
+        const today = getTodayString();
+        if (lastDate !== today) {
+          // New day: reset ads viewed count and update date
+          adsViewedCount = 0;
+          localStorage.setItem(STORAGE_ADS_VIEWED, '0');
+          localStorage.setItem(STORAGE_LAST_DATE, today);
+          // balance remains unchanged
+          return true;
+        }
+        return false;
+      }
+
+      // Load state from localStorage
+      function loadFromStorage() {
+        const savedUsername = localStorage.getItem(STORAGE_USERNAME);
+        if (savedUsername && savedUsername.trim() !== '') {
+          currentUsername = savedUsername.trim();
+        } else {
+          currentUsername = '';
+        }
+
+        // Always check date before reading ads count
+        checkDailyReset();
+
+        const storedAds = localStorage.getItem(STORAGE_ADS_VIEWED);
+        adsViewedCount = storedAds ? parseInt(storedAds, 10) : 0;
+        if (isNaN(adsViewedCount) || adsViewedCount < 0) adsViewedCount = 0;
+        if (adsViewedCount > MAX_ADS_PER_DAY) adsViewedCount = MAX_ADS_PER_DAY;
+
+        const storedBalance = localStorage.getItem(STORAGE_BALANCE);
+        userBalance = storedBalance ? parseFloat(storedBalance) : 0.0;
+        if (isNaN(userBalance) || userBalance < 0) userBalance = 0.0;
+        // round to 2 decimals
+        userBalance = Math.round(userBalance * 100) / 100;
+      }
+
+      // Save current state to localStorage
+      function saveToStorage() {
+        if (currentUsername) {
+          localStorage.setItem(STORAGE_USERNAME, currentUsername);
+        } else {
+          localStorage.removeItem(STORAGE_USERNAME);
+        }
+        localStorage.setItem(STORAGE_ADS_VIEWED, adsViewedCount.toString());
+        localStorage.setItem(STORAGE_BALANCE, userBalance.toFixed(2));
+        localStorage.setItem(STORAGE_LAST_DATE, getTodayString());
+      }
+
+      // Update UI based on state
+      function updateUI() {
+        // If username exists, show dashboard
+        if (currentUsername) {
+          loginSection.style.display = 'none';
+          dashboardArea.style.display = 'block';
+          displayUsername.textContent = currentUsername;
+        } else {
+          loginSection.style.display = 'block';
+          dashboardArea.style.display = 'none';
+          // clear input maybe
+          usernameInput.value = '';
+          return;
+        }
+
+        // Update balance & ads count
+        balanceDisplay.textContent = `$${userBalance.toFixed(2)}`;
+        adsViewedSpan.textContent = adsViewedCount;
+
+        // Render 20 ad buttons
+        renderAdButtons();
+
+        // Update greeting message if needed
+        if (greetingMessage) {
+          // already contains username
+        }
+      }
+
+      // Create 20 clickable ad buttons
+      function renderAdButtons() {
+        if (!adButtonsContainer) return;
+        adButtonsContainer.innerHTML = '';
+
+        for (let i = 1; i <= MAX_ADS_PER_DAY; i++) {
+          const btn = document.createElement('button');
+          btn.className = 'ad-btn';
+          btn.textContent = `Ad ${i}`;
+          
+          // Mark as used if this ad index <= adsViewedCount
+          if (i <= adsViewedCount) {
+            btn.classList.add('used');
+            btn.disabled = true;
+          } else {
+            btn.classList.remove('used');
+            btn.disabled = false;
+          }
+
+          // Add click event
+          btn.addEventListener('click', (function(adIndex) {
+            return function(e) {
+              handleAdClick(adIndex);
+            };
+          })(i));
+
+          adButtonsContainer.appendChild(btn);
+        }
+      }
+
+      // Handle ad click: earn if not already viewed and within limit
+      function handleAdClick(adNumber) {
+        // Safety checks
+        if (!currentUsername) {
+          alert('Please login first.');
+          return;
+        }
+
+        // Reload latest from storage to avoid stale state (especially after reset)
+        loadFromStorage();
+        
+        // Re-check daily reset
+        checkDailyReset();
+        
+        // Ensure the clicked ad is exactly the next one to view (adsViewedCount+1)
+        if (adNumber !== adsViewedCount + 1) {
+          // If user clicks an ad that is not the immediate next, we can show message.
+          if (adNumber <= adsViewedCount) {
+            alert(`Ad ${adNumber} already watched today.`);
+          } else {
+            alert(`Please watch ads in order. Next available is Ad ${adsViewedCount + 1}.`);
+          }
+          updateUI();
+          return;
+        }
+
+        // Prevent exceeding daily limit
+        if (adsViewedCount >= MAX_ADS_PER_DAY) {
+          alert('🎉 You have completed all 20 ads for today! Come back tomorrow.');
+          updateUI();
+          return;
+        }
+
+        // Process earning
+        adsViewedCount++;
+        userBalance += EARN_PER_AD;
+        userBalance = Math.round(userBalance * 100) / 100;
+
+        // Save to storage
+        saveToStorage();
+
+        // Show confirmation in ad display box
+        if (adDisplayBox) {
+          adDisplayBox.innerHTML = `✅ Ad ${adNumber} viewed! +$${EARN_PER_AD.toFixed(2)} · Balance: $${userBalance.toFixed(2)}`;
+        }
+
+        // Update UI
+        updateUI();
+
+        // Optional: dynamically trigger ad refresh for Adsterra? 
+        // The Adsterra script is already loaded; real ad displays may appear.
+      }
+
+      // Login function
+      function performLogin() {
+        const trimmedUsername = usernameInput.value.trim();
+        if (!trimmedUsername) {
+          alert('Please enter a username to continue.');
+          return;
+        }
+        // Save username
+        currentUsername = trimmedUsername;
+        // Keep existing balance/ads from storage (if same user) or initialize
+        // Load existing data but preserve username
+        loadFromStorage(); // this loads balance/ads, but may overwrite currentUsername
+        // Force username to new one
+        currentUsername = trimmedUsername;
+        // Ensure daily reset check
+        checkDailyReset();
+        // If ads count from previous session belongs to other user? We keep it as is (demo)
+        saveToStorage();
+        updateUI();
+        usernameInput.value = '';
+      }
+
+      // Clear saved login (and reset session)
+      function clearLoginData() {
+        if (confirm('Remove saved login and reset local data? Your balance will be lost.')) {
+          localStorage.removeItem(STORAGE_USERNAME);
+          localStorage.removeItem(STORAGE_ADS_VIEWED);
+          localStorage.removeItem(STORAGE_BALANCE);
+          localStorage.removeItem(STORAGE_LAST_DATE);
+          currentUsername = '';
+          adsViewedCount = 0;
+          userBalance = 0.0;
+          updateUI();
+          usernameInput.value = '';
+        }
+      }
+
+      // Reset daily ads manually (for testing or user request)
+      function resetDailyAds() {
+        if (confirm('Reset today\'s ad count to 0? (Balance remains unchanged)')) {
+          adsViewedCount = 0;
+          localStorage.setItem(STORAGE_ADS_VIEWED, '0');
+          localStorage.setItem(STORAGE_LAST_DATE, getTodayString());
+          saveToStorage();
+          updateUI();
+          if (adDisplayBox) {
+            adDisplayBox.innerHTML = `🔄 Ads reset. You can watch up to 20 ads again today.`;
+          }
+        }
+      }
+
+      // Event Listeners
+      loginBtn.addEventListener('click', performLogin);
+      clearLoginBtn.addEventListener('click', clearLoginData);
+      resetDailyBtn.addEventListener('click', resetDailyAds);
+
+      // Allow Enter key on username input
+      usernameInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          performLogin();
+        }
+      });
+
+      // Initial load
+      loadFromStorage();
+      // If username exists after load, make sure UI reflects
+      if (currentUsername) {
+        // already loaded, but ensure login hidden
+        updateUI();
+      } else {
+        loginSection.style.display = 'block';
+        dashboardArea.style.display = 'none';
+      }
+
+      // Additionally, ensure Adsterra placement may appear (script already in head)
+      // The ad code will handle its own display.
+      console.log('🌿 Bistro ready — watch ads, earn $0.20 each (20/day)');
+    })();
+  </script>
+</body>
+</html>
+```
