@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AdStream · watch & earn</title>
+  <!-- Font Awesome 6 (free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background: #f6f8fc;
+      color: #0b0e14;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.2rem;
+    }
+
+    .app-wrapper {
+      max-width: 480px;
+      width: 100%;
+      background: white;
+      border-radius: 48px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06), 0 10px 30px rgba(0, 0, 0, 0.02);
+      padding: 1.8rem 1.5rem 1.2rem;
+      transition: all 0.2s;
+      border: 1px solid #edeff2;
+      position: relative;
+    }
+
+    /* header */
+    .app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.8rem;
+    }
+
+    .app-header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(145deg, #0b0c0e, #2d323b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .app-header h1 i {
+      -webkit-text-fill-color: #2563eb;
+      margin-right: 6px;
+    }
+
+    .user-badge {
+      background: #eef2f9;
+      padding: 0.4rem 1rem 0.4rem 0.8rem;
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #1f2a3f;
+    }
+
+    .user-badge i {
+      color: #2563eb;
+      font-size: 1rem;
+    }
+
+    /* auth card */
+    .auth-card {
+      background: #fafcff;
+      border-radius: 32px;
+      padding: 1.8rem 1.5rem;
+      border: 1px solid #e5eaf0;
+      margin-bottom: 1.8rem;
+    }
+
+    .auth-card h3 {
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .auth-input {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border: 1.5px solid #dce1e9;
+      border-radius: 60px;
+      background: white;
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    .auth-input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+    }
+
+    .auth-btn {
+      background: #0b0e14;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      width: 100%;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .auth-btn:hover {
+      background: #262b33;
+    }
+
+    .auth-switch {
+      margin-top: 0.7rem;
+      font-size: 0.9rem;
+      color: #4b5563;
+      text-align: center;
+    }
+
+    .auth-switch span {
+      color: #2563eb;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* dashboard */
+    .dashboard {
+      display: none;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      margin: 1.2rem 0 1.8rem;
+    }
+
+    .stat-card {
+      background: #f8faff;
+      border-radius: 24px;
+      padding: 1rem 0.8rem;
+      text-align: center;
+      border: 1px solid #e9edf4;
+    }
+
+    .stat-card i {
+      font-size: 1.8rem;
+      color: #2563eb;
+      background: #e4edfe;
+      padding: 0.5rem;
+      border-radius: 60px;
+      margin-bottom: 6px;
+    }
+
+    .stat-card .value {
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .stat-card .label {
+      font-size: 0.75rem;
+      color: #5e6778;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    .ad-player {
+      background: #f2f6fe;
+      border-radius: 32px;
+      padding: 1.6rem 1.2rem;
+      text-align: center;
+      border: 1px dashed #b9c8e0;
+      margin-bottom: 1.8rem;
+    }
+
+    .ad-player .ad-icon {
+      font-size: 2.8rem;
+      color: #1e2b47;
+      opacity: 0.6;
+    }
+
+    .ad-player .timer {
+      font-weight: 700;
+      font-size: 2.2rem;
+      margin: 0.2rem 0;
+      letter-spacing: 1px;
+    }
+
+    .ad-player .ad-label {
+      font-weight: 500;
+      color: #29344a;
+    }
+
+    .watch-btn {
+      background: #0b0e14;
+      color: white;
+      border: none;
+      padding: 0.9rem 2.2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-top: 0.8rem;
+      cursor: pointer;
+      transition: 0.2s;
+      width: 100%;
+    }
+
+    .watch-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .watch-btn:hover:not(:disabled) {
+      background: #262b33;
+    }
+
+    .progress-text {
+      font-size: 0.9rem;
+      color: #3b465b;
+      margin-top: 0.6rem;
+    }
+
+    .action-row {
+      display: flex;
+      gap: 0.6rem;
+      margin: 1.2rem 0 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      flex: 1;
+      background: white;
+      border: 1.5px solid #dce1e9;
+      padding: 0.7rem 0.2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-width: 90px;
+    }
+
+    .action-btn i {
+      color: #2563eb;
+    }
+
+    .action-btn:hover {
+      border-color: #2563eb;
+      background: #f2f7ff;
+    }
+
+    .action-btn.withdraw {
+      background: #0b0e14;
+      border-color: #0b0e14;
+      color: white;
+    }
+
+    .action-btn.withdraw i {
+      color: white;
+    }
+
+    .action-btn.withdraw:hover {
+      background: #2c323d;
+    }
+
+    .info-box {
+      background: #f2f5fa;
+      border-radius: 20px;
+      padding: 1rem 1.2rem;
+      font-size: 0.9rem;
+      border-left: 4px solid #2563eb;
+      margin: 1.2rem 0 0.6rem;
+      color: #1f2937;
+    }
+
+    .info-box i {
+      margin-right: 10px;
+      color: #2563eb;
+    }
+
+    .footnote {
+      font-size: 0.75rem;
+      color: #6b7a8f;
+      margin-top: 1.2rem;
+      text-align: center;
+      border-top: 1px solid #e4e9f0;
+      padding-top: 1rem;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* ----- MODAL ----- */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      z-index: 999;
+    }
+
+    .modal-box {
+      background: white;
+      max-width: 420px;
+      width: 100%;
+      border-radius: 40px;
+      padding: 2rem 1.8rem;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+      animation: modalFade 0.25s ease;
+    }
+
+    @keyframes modalFade {
+      0% { opacity: 0; transform: scale(0.96) translateY(10px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal-box h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-box h2 i {
+      color: #2563eb;
+    }
+
+    .modal-box p {
+      color: #4b5563;
+      margin-bottom: 1.2rem;
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #6b7a8f;
+      position: relative;
+      top: -6px;
+      float: right;
+    }
+
+    .modal-close:hover {
+      color: #0b0e14;
+    }
+
+    .modal-input {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border: 1.5px solid #dce1e9;
+      border-radius: 60px;
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    .modal-input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+    }
+
+    .modal-btn {
+      background: #0b0e14;
+      color: white;
+      border: none;
+      padding: 0.9rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      font-size: 1rem;
+      transition: 0.2s;
+      margin-top: 0.4rem;
+    }
+
+    .modal-btn:hover {
+      background: #262b33;
+    }
+
+    .social-share-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.8rem;
+      margin: 1.2rem 0;
+    }
+
+    .social-share-item {
+      background: #f2f6fe;
+      border-radius: 60px;
+      padding: 0.8rem 0.2rem;
+      text-align: center;
+      font-weight: 500;
+      font-size: 0.8rem;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: #1f2a3f;
+    }
+
+    .social-share-item i {
+      font-size: 1.8rem;
+      color: #2563eb;
+    }
+
+    .social-share-item:hover {
+      border-color: #2563eb;
+      background: #e8efff;
+    }
+
+    .invite-link-box {
+      background: #f1f4f9;
+      padding: 0.8rem 1rem;
+      border-radius: 60px;
+      font-size: 0.85rem;
+      word-break: break-all;
+      margin: 0.8rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .copy-btn {
+      background: #0b0e14;
+      color: white;
+      border: none;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.75rem;
+    }
+
+    .copy-btn:hover {
+      background: #2c323d;
+    }
+
+    .text-center { text-align: center; }
+    .mt-1 { margin-top: 0.5rem; }
+    .mt-2 { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+
+<div class="app-wrapper" id="app">
+  <!-- header -->
+  <div class="app-header">
+    <h1><i class="fas fa-play-circle"></i> AdStream</h1>
+    <div class="user-badge" id="userBadge">
+      <i class="fas fa-user-circle"></i> <span id="usernameDisplay">Guest</span>
+    </div>
+  </div>
+
+  <!-- AUTH CARD -->
+  <div id="authCard" class="auth-card">
+    <h3><i class="fas fa-sign-in-alt" style="color:#2563eb;"></i> Access your account</h3>
+    <input type="text" id="authUsername" class="auth-input" placeholder="Username" value="demo">
+    <input type="password" id="authPassword" class="auth-input" placeholder="Password" value="123456">
+    <button id="loginBtn" class="auth-btn"><i class="fas fa-arrow-right-to-bracket"></i> Login / Register</button>
+    <div class="auth-switch">
+      <span id="authToggleMsg">Don't have an account? <span id="authToggleLink">Register</span></span>
+    </div>
+    <div id="authError" style="color:#b91c1c; font-size:0.9rem; margin-top:0.5rem; text-align:center;"></div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard" class="dashboard">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <i class="fas fa-eye"></i>
+        <div class="value" id="watchedCount">0</div>
+        <div class="label">Ads watched</div>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-coins"></i>
+        <div class="value" id="balanceDisplay">$0.00</div>
+        <div class="label">Your balance (20%)</div>
+      </div>
+    </div>
+
+    <div class="ad-player">
+      <div class="ad-icon"><i class="fas fa-film"></i></div>
+      <div class="ad-label">Watch an ad to earn</div>
+      <div class="timer" id="adTimer">00</div>
+      <div class="progress-text" id="adProgress">0 / 20 today</div>
+      <button class="watch-btn" id="watchAdBtn"><i class="fas fa-play"></i> Watch ad</button>
+    </div>
+
+    <div class="action-row">
+      <button class="action-btn" id="homeBtn"><i class="fas fa-home"></i> Home</button>
+      <button class="action-btn" id="inviteBtn"><i class="fas fa-user-plus"></i> Invite</button>
+      <button class="action-btn withdraw" id="withdrawBtn"><i class="fas fa-hand-holding-usd"></i> Withdraw</button>
+    </div>
+
+    <div id="infoPanel" class="info-box">
+      <i class="fas fa-users"></i> <span id="infoText">Invite 20 people to unlock withdrawals.</span>
+    </div>
+    <div id="inviteCountDisplay" style="text-align:center; font-size:0.95rem; color:#2d3748; margin: 4px 0 8px;">
+      <i class="fas fa-user-friends"></i> Invited: <span id="inviteCount">0</span> / 20
+    </div>
+
+    <div class="footnote">
+      <i class="fas fa-shield-alt"></i> 80% to platform · 20% to you · Auto-payout
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CONTAINER (dynamic) -->
+<div id="modalContainer"></div>
+
+<script>
+  (function() {
+    // ---------- ADSTERRA (simulated) ----------
+    (function() {
+      const script = document.createElement('script');
+      script.src = 'https://pl30556019.effectivecpmnetwork.com/68/be/e5/68bee5d75277abf76b2436a45a10f4b0.js';
+      script.async = true;
+      document.head.appendChild(script);
+    })();
+
+    // ---------- STATE ----------
+    const STORAGE_KEY = 'adstream_user_data';
+
+    function getDefaultUser() {
+      return {
+        username: '',
+        password: '',
+        watchedToday: 0,
+        totalWatched: 0,
+        balance: 0,
+        invitedCount: 0,
+        lastDate: new Date().toDateString(),
+        isLoggedIn: false,
+        withdrawalDetails: '' // store wallet/paypal
+      };
+    }
+
+    let user = getDefaultUser();
+    let currentAdInterval = null;
+    let adTimer = 0;
+    const MAX_ADS_PER_DAY = 20;
+    const AD_REWARD = 0.20;
+    const INVITE_THRESHOLD = 20;
+
+    // DOM refs
+    const authCard = document.getElementById('authCard');
+    const dashboard = document.getElementById('dashboard');
+    const usernameDisplay = document.getElementById('usernameDisplay');
+    const authUsername = document.getElementById('authUsername');
+    const authPassword = document.getElementById('authPassword');
+    const loginBtn = document.getElementById('loginBtn');
+    const authToggleLink = document.getElementById('authToggleLink');
+    const authToggleMsg = document.getElementById('authToggleMsg');
+    const authError = document.getElementById('authError');
+
+    const watchedCount = document.getElementById('watchedCount');
+    const balanceDisplay = document.getElementById('balanceDisplay');
+    const adTimerEl = document.getElementById('adTimer');
+    const adProgress = document.getElementById('adProgress');
+    const watchBtn = document.getElementById('watchAdBtn');
+    const infoText = document.getElementById('infoText');
+    const inviteCountSpan = document.getElementById('inviteCount');
+    const homeBtn = document.getElementById('homeBtn');
+    const inviteBtn = document.getElementById('inviteBtn');
+    const withdrawBtn = document.getElementById('withdrawBtn');
+    const modalContainer = document.getElementById('modalContainer');
+
+    // ---------- helpers ----------
+    function saveUser() {
+      if (user.isLoggedIn && user.username) {
+        const data = { ...user };
+        data.lastDate = new Date().toDateString();
+        localStorage.setItem(STORAGE_KEY + '_' + user.username, JSON.stringify(data));
+      }
+    }
+
+    function loadUser(username) {
+      const raw = localStorage.getItem(STORAGE_KEY + '_' + username);
+      if (raw) {
+        try {
+          const parsed = JSON.parse(raw);
+          const def = getDefaultUser();
+          for (let key in def) {
+            if (parsed[key] === undefined) parsed[key] = def[key];
+          }
+          return parsed;
+        } catch (e) { return null; }
+      }
+      return null;
+    }
+
+    function resetDailyIfNeeded() {
+      const today = new Date().toDateString();
+      if (user.lastDate !== today) {
+        user.watchedToday = 0;
+        user.lastDate = today;
+        saveUser();
+      }
+    }
+
+    function updateUI() {
+      resetDailyIfNeeded();
+      watchedCount.textContent = user.watchedToday + ' / ' + MAX_ADS_PER_DAY;
+      balanceDisplay.textContent = '$' + user.balance.toFixed(2);
+      adProgress.textContent = user.watchedToday + ' / ' + MAX_ADS_PER_DAY + ' today';
+      inviteCountSpan.textContent = user.invitedCount;
+
+      const canWithdraw = user.invitedCount >= INVITE_THRESHOLD && user.balance > 0;
+      if (user.invitedCount >= INVITE_THRESHOLD) {
+        infoText.innerHTML = `<i class="fas fa-check-circle" style="color:#16a34a;"></i> Withdrawals unlocked! Add your wallet/PayPal.`;
+        withdrawBtn.disabled = false;
+        withdrawBtn.style.opacity = '1';
+      } else {
+        const needed = INVITE_THRESHOLD - user.invitedCount;
+        infoText.innerHTML = `<i class="fas fa-users"></i> Invite ${needed} more people to unlock withdrawals.`;
+        withdrawBtn.disabled = true;
+        withdrawBtn.style.opacity = '0.5';
+      }
+
+      if (user.watchedToday >= MAX_ADS_PER_DAY) {
+        watchBtn.disabled = true;
+        watchBtn.textContent = '✅ Daily limit reached';
+      } else {
+        watchBtn.disabled = false;
+        watchBtn.innerHTML = '<i class="fas fa-play"></i> Watch ad';
+      }
+    }
+
+    // ---------- AUTH ----------
+    function loginUser(username, password) {
+      const stored = loadUser(username);
+      if (stored && stored.password === password) {
+        user = stored;
+        user.isLoggedIn = true;
+        authError.textContent = '';
+        showDashboard();
+        return true;
+      } else if (!stored) {
+        const newUser = getDefaultUser();
+        newUser.username = username;
+        newUser.password = password;
+        newUser.isLoggedIn = true;
+        newUser.lastDate = new Date().toDateString();
+        user = newUser;
+        saveUser();
+        authError.textContent = '';
+        showDashboard();
+        return true;
+      } else {
+        authError.textContent = '❌ Wrong password.';
+        return false;
+      }
+    }
+
+    function showDashboard() {
+      authCard.classList.add('hidden');
+      dashboard.style.display = 'block';
+      usernameDisplay.textContent = user.username;
+      updateUI();
+    }
+
+    // ---------- AD WATCH ----------
+    function startAdWatch() {
+      if (user.watchedToday >= MAX_ADS_PER_DAY) {
+        alert('You reached 20 ads today. Come back tomorrow!');
+        return;
+      }
+      if (currentAdInterval) return;
+
+      watchBtn.disabled = true;
+      watchBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Watching...';
+      adTimer = 15;
+      adTimerEl.textContent = adTimer;
+
+      currentAdInterval = setInterval(() => {
+        adTimer -= 1;
+        adTimerEl.textContent = adTimer < 10 ? '0' + adTimer : adTimer;
+
+        if (adTimer <= 0) {
+          clearInterval(currentAdInterval);
+          currentAdInterval = null;
+          user.watchedToday += 1;
+          user.totalWatched += 1;
+          user.balance += AD_REWARD;
+          saveUser();
+          updateUI();
+          watchBtn.innerHTML = '<i class="fas fa-check"></i> Ad watched!';
+          setTimeout(() => {
+            if (user.watchedToday < MAX_ADS_PER_DAY) {
+              watchBtn.innerHTML = '<i class="fas fa-play"></i> Watch ad';
+              watchBtn.disabled = false;
+            } else {
+              watchBtn.innerHTML = '✅ Daily limit reached';
+              watchBtn.disabled = true;
+            }
+          }, 1200);
+          adTimerEl.textContent = '00';
+        }
+      }, 1000);
+    }
+
+    // ---------- MODAL SYSTEM ----------
+    function openModal(html) {
+      modalContainer.innerHTML = `
+        <div class="modal-overlay" id="modalOverlay">
+          <div class="modal-box">
+            ${html}
+          </div>
+        </div>
+      `;
+      // close on overlay click
+      document.getElementById('modalOverlay').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+      });
+    }
+
+    function closeModal() {
+      modalContainer.innerHTML = '';
+    }
+
+    // ---------- INVITE MODAL (social share) ----------
+    function openInviteModal() {
+      const shareText = `🚀 Join AdStream and earn 20% from every ad! Use my invite: ${user.username}`;
+      const shareLink = `https://adstream.example.com/?ref=${user.username}`;
+
+      const html = `
+        <button class="modal-close" onclick="window.closeModal()">&times;</button>
+        <h2><i class="fas fa-user-plus"></i> Invite friends</h2>
+        <p>Share your invite link and earn bonuses. You need ${INVITE_THRESHOLD - user.invitedCount} more invites to unlock withdrawals.</p>
+        
+        <div class="invite-link-box">
+          <span id="inviteLinkDisplay">${shareLink}</span>
+          <button class="copy-btn" id="copyInviteLink">Copy</button>
+        </div>
+
+        <div class="social-share-grid">
+          <div class="social-share-item" data-share="whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </div>
+          <div class="social-share-item" data-share="telegram">
+            <i class="fab fa-telegram-plane"></i> Telegram
+          </div>
+          <div class="social-share-item" data-share="twitter">
+            <i class="fab fa-twitter"></i> Twitter
+          </div>
+          <div class="social-share-item" data-share="facebook">
+            <i class="fab fa-facebook"></i> Facebook
+          </div>
+          <div class="social-share-item" data-share="linkedin">
+            <i class="fab fa-linkedin-in"></i> LinkedIn
+          </div>
+          <div class="social-share-item" data-share="email">
+            <i class="fas fa-envelope"></i> Email
+          </div>
+        </div>
+        <button class="modal-btn" id="inviteSimulateBtn"><i class="fas fa-user-check"></i> Simulate invite (+1)</button>
+        <p class="text-center mt-1" style="font-size:0.85rem; color:#6b7a8f;">Click any social icon to share (simulated)</p>
+      `;
+
+      openModal(html);
+
+      // copy link
+      document.getElementById('copyInviteLink')?.addEventListener('click', function() {
+        const link = document.getElementById('inviteLinkDisplay').textContent;
+        navigator.clipboard?.writeText(link).then(() => {
+          alert('✅ Invite link copied!');
+        }).catch(() => {
+          // fallback
+          const ta = document.createElement('textarea');
+          ta.value = link;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          ta.remove();
+          alert('✅ Invite link copied!');
+        });
+      });
+
+      // social share (simulated)
+      document.querySelectorAll('.social-share-item').forEach(el => {
+        el.addEventListener('click', function() {
+          const platform = this.dataset.share;
+          const url = encodeURIComponent(shareLink);
+          const text = encodeURIComponent(shareText);
+          let shareUrl = '';
+          switch(platform) {
+            case 'whatsapp': shareUrl = `https://api.whatsapp.com/send?text=${text}%20${url}`; break;
+            case 'telegram': shareUrl = `https://t.me/share/url?url=${url}&text=${text}`; break;
+            case 'twitter': shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`; break;
+            case 'facebook': shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`; break;
+            case 'linkedin': shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`; break;
+            case 'email': shareUrl = `mailto:?subject=Join%20AdStream&body=${text}%20${url}`; break;
+            default: return;
+          }
+          window.open(shareUrl, '_blank', 'width=600,height=500');
+          // simulate invite +1 (only once per social click)
+          if (!this.dataset.invited) {
+            this.dataset.invited = 'true';
+            user.invitedCount = Math.min(user.invitedCount + 1, 30);
+            saveUser();
+            updateUI();
+            // update the invite count in modal
+            const inviteSpan = document.getElementById('inviteCount');
+            if (inviteSpan) inviteSpan.textContent = user.invitedCount;
+            // also update main UI
+            document.getElementById('inviteCount').textContent = user.invitedCount;
+          }
+        });
+      });
+
+      // simulate invite button
+      document.getElementById('inviteSimulateBtn')?.addEventListener('click', function() {
+        user.invitedCount = Math.min(user.invitedCount + 1, 30);
+        saveUser();
+        updateUI();
+        // update modal counter if exists
+        const inviteSpan = document.getElementById('inviteCount');
+        if (inviteSpan) inviteSpan.textContent = user.invitedCount;
+        document.getElementById('inviteCount').textContent = user.invitedCount;
+        alert('✅ +1 invite simulated!');
+      });
+    }
+
+    // ---------- WITHDRAW MODAL (wallet/paypal) ----------
+    function openWithdrawModal() {
+      if (user.invitedCount < INVITE_THRESHOLD) {
+        alert(`🚫 Need ${INVITE_THRESHOLD - user.invitedCount} more invites to withdraw.`);
+        return;
+      }
+      if (user.balance <= 0) {
+        alert('💰 Your balance is $0.00. Watch more ads!');
+        return;
+      }
+
+      const savedWallet = user.withdrawalDetails || '';
+      const html = `
+        <button class="modal-close" onclick="window.closeModal()">&times;</button>
+        <h2><i class="fas fa-hand-holding-usd"></i> Withdraw funds</h2>
+        <p>Your balance: <strong>$${user.balance.toFixed(2)}</strong> · Auto-payout</p>
+        <label style="font-weight:500; display:block; margin-bottom:4px;">Crypto wallet address or PayPal email</label>
+        <input type="text" id="walletInput" class="modal-input" placeholder="0x... or paypal@email.com" value="${savedWallet}">
+        <button class="modal-btn" id="confirmWithdrawBtn"><i class="fas fa-paper-plane"></i> Confirm withdrawal</button>
+        <p class="text-center mt-1" style="font-size:0.8rem; color:#6b7a8f;">Funds will be sent automatically to this address.</p>
+      `;
+
+      openModal(html);
+
+      document.getElementById('confirmWithdrawBtn')?.addEventListener('click', function() {
+        const wallet = document.getElementById('walletInput').value.trim();
+        if (!wallet) {
+          alert('⚠️ Please enter a wallet address or PayPal email.');
+          return;
+        }
+        // save wallet
+        user.withdrawalDetails = wallet;
+        saveUser();
+
+        // process payout
+        const amount = user.balance;
+        alert(`💸 Auto-withdrawal: $${amount.toFixed(2)} sent to ${wallet} (simulated).`);
+        user.balance = 0;
+        saveUser();
+        updateUI();
+        closeModal();
+      });
+    }
+
+    // ---------- EVENT BINDING ----------
+    let isLoginMode = true;
+    authToggleLink.addEventListener('click', function() {
+      isLoginMode = !isLoginMode;
+      if (isLoginMode) {
+        authToggleMsg.innerHTML = `Don't have an account? <span id="authToggleLink">Register</span>`;
+        loginBtn.innerHTML = '<i class="fas fa-arrow-right-to-bracket"></i> Login';
+      } else {
+        authToggleMsg.innerHTML = `Already have an account? <span id="authToggleLink">Login</span>`;
+        loginBtn.innerHTML = '<i class="fas fa-user-plus"></i> Register';
+      }
+      document.getElementById('authToggleLink').addEventListener('click', authToggleLink.click);
+    });
+
+    loginBtn.addEventListener('click', function() {
+      const username = authUsername.value.trim();
+      const password = authPassword.value.trim();
+      if (!username || !password) {
+        authError.textContent = '⚠️ Please fill in all fields.';
+        return;
+      }
+      loginUser(username, password);
+    });
+
+    authPassword.addEventListener('keydown', (e) => { if (e.key === 'Enter') loginBtn.click(); });
+    authUsername.addEventListener('keydown', (e) => { if (e.key === 'Enter') loginBtn.click(); });
+
+    watchBtn.addEventListener('click', startAdWatch);
+
+    homeBtn.addEventListener('click', function() {
+      if (user.isLoggedIn) {
+        updateUI();
+        alert('🏠 Dashboard refreshed.');
+      }
+    });
+
+    inviteBtn.addEventListener('click', openInviteModal);
+    withdrawBtn.addEventListener('click', openWithdrawModal);
+
+    // expose closeModal globally for inline onclick
+    window.closeModal = closeModal;
+
+    // auto-login demo
+    window.addEventListener('load', function() {
+      const demoData = loadUser('demo');
+      if (demoData) {
+        authUsername.value = 'demo';
+        authPassword.value = '123456';
+        loginUser('demo', '123456');
+      } else {
+        authCard.classList.remove('hidden');
+        dashboard.style.display = 'none';
+      }
+    });
+
+  })();
+</script>
+
+</body>
+</html>
